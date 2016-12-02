@@ -2,9 +2,24 @@
   "meta": {
     "username": "fauzanooor",
     "repositoryName": "fauzanooor.github.io",
-    "branch": "gh-pages"
+    "branch": "gh-pages",
+    "delay": "150"
+  },
+  "site": {
+    "title": "My Bloggg",
+    "description": "Just another blogs.",
+    "postsPerPage": "5",
+    "disqus": "fauzanooor"
+  },
+  "socialnetwork": {
+    "email": "iam@fauzanooor.id",
+    "twitter": "fauzanooor",
+    "linkedin": "fauzanooor",
+    "facebook": "fauzanooor",
+    "instagram": "fauzanooor",
+    "github": "fauzanooor"
   },
   "theme": {
-    "name": "Casper"
+    "name": "casper"
   }
 }
