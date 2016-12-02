@@ -8,4 +8,4 @@ Hello hello hello
 
 this is such a nice beat, you should hear this video.
 
-video::[p7nIEJ1vpFM][youtube]
+video::p7nIEJ1vpFM[youtube]
