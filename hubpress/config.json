@@ -8,6 +8,7 @@
   "site": {
     "title": "My Bloggg",
     "description": "Just another blogs.",
+    "logo": "https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/face1.png",
     "postsPerPage": "5",
     "disqus": "fauzanooor"
   },
