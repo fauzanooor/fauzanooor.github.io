@@ -15,11 +15,11 @@
   },
   "socialnetwork": {
     "email": "iam@fauzanooor.id",
-    "twitter": "fauzanooor",
-    "linkedin": "fauzanooor",
-    "facebook": "fauzanooor",
-    "instagram": "fauzanooor",
-    "github": "fauzanooor"
+    "twitter": "https://twitter.com/fauzanooor",
+    "linkedin": "https://linkedin.com/in/fauzanooor",
+    "facebook": "https://facebook.com/fauzanooor",
+    "instagram": "https://instagram.com/fauzanooor",
+    "github": "https://github.com/fauzanooor"
   },
   "theme": {
     "name": "saga"
