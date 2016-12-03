@@ -1,0 +1,20 @@
+= Install Zimbra Mail Server on Red Hat?
+:hp-tags: installation, server
+:published_at: 2003-03-03
+
+=== First thing to do..
+
+* Download ZCS file from https://www.zimbra.com/downloads/zimbra-collaboration-open-source/[this link]
+* DNS Server installed with pointed mx record. (in this case, we'll install dns server in the same node with zimbra mail server)
+* coffee maybe?
+
+
+=== Second Step
+
+After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server. +
+if you using windows you can transfer with `WinSCP` or other ftp/scp client. +
+But if you are using linux or mac, you can use a `scp` command.
+
+=== Third Step - Initial Configuration
+In this section, we'll configure on the networking side, like ip address, hostname, etc.
+
