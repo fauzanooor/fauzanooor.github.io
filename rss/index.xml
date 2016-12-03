@@ -1,4 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[My Bloggg]]></title><description><![CDATA[Just another blogs.]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>My Bloggg</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sat, 03 Dec 2016 04:20:40 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[NCMPCPP on OpenSUSE]]></title><description><![CDATA[<div class="imageblock">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[My Bloggg]]></title><description><![CDATA[Just another blogs.]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>My Bloggg</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sat, 03 Dec 2016 18:52:07 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server on Red Hat?]]></title><description><![CDATA[<div class="sect2">
+<h3 id="_first_thing_to_do">First thing to do..</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Download ZCS file from <a href="https://www.zimbra.com/downloads/zimbra-collaboration-open-source/">this link</a></p>
+</li>
+<li>
+<p>DNS Server installed with pointed mx record. (in this case, we&#8217;ll install dns server in the same node with zimbra mail server)</p>
+</li>
+<li>
+<p>coffee maybe?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_second_step">Second Step</h3>
+<div class="paragraph">
+<p>After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server.<br>
+if you using windows you can transfer with <code>WinSCP</code> or other ftp/scp client.<br>
+But if you are using linux or mac, you can use a <code>scp</code> command.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_third_step_initial_configuration">Third Step - Initial Configuration</h3>
+<div class="paragraph">
+<p>In this section, we&#8217;ll configure on the networking side, like ip address, hostname, etc.</p>
+</div>
+</div>]]></description><link>https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html</link><guid isPermaLink="true">https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html</guid><category><![CDATA[installation]]></category><category><![CDATA[ server]]></category><dc:creator><![CDATA[fauzan]]></dc:creator><pubDate>Mon, 03 Mar 2003 00:00:00 GMT</pubDate></item><item><title><![CDATA[NCMPCPP on OpenSUSE]]></title><description><![CDATA[<div class="imageblock">
 <div class="content">
 <img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/spectre.gif" alt="spectre.gif">
 </div>
