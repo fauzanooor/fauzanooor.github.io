@@ -2,7 +2,5 @@
 :hp-tags: ncmpcpp
 :published_at: 2002-02-02
 
-== NCMPCPP
-
-images::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/spectre.gif[]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/spectre.gif[]
 
