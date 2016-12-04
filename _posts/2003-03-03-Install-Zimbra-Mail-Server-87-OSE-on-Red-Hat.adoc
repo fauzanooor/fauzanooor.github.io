@@ -19,11 +19,11 @@ But if you are using linux or mac, you can use a `scp` command. +
 *WinSCP* +
 image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/winscp.png[]
 
-*scp command*
+*scp command* +
 [source]
-scp zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz fauzan@100.100.100.3:
+[fauzan@noor ~]# scp zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz fauzan@100.100.100.3:
 fauzan@100.100.100.3's password: 
-zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz	     100%  290MB  36.3MB/s   00:08
+zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz			100%  290MB  36.3MB/s   00:08
 
 === 3th Step - Initial Configuration
 In this section, we'll configure on the networking side, like ip address, hostname, etc. +
