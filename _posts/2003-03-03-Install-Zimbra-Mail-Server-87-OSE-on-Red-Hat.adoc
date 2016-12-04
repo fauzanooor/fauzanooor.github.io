@@ -17,7 +17,7 @@ After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Serv
 if you using windows you can transfer with `WinSCP` or other ftp/scp client. +
 But if you are using linux or mac, you can use a `scp` command. +
 *WinSCP* +
-image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/winscp.png[]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/winscp.png[align="center"]
 
 *scp command* +
 [source]
