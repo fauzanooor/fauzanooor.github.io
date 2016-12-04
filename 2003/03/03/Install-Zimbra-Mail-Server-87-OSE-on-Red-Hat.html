@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/main.min.css?v=1480860168055"/>
-    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/custom.css?v=1480860168055"/>
-    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1480860168055"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/main.min.css?v=1480863689550"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/custom.css?v=1480863689550"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1480863689550"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/head-scripts.min.js?v=1480860168055"></script>
+    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/head-scripts.min.js?v=1480863689550"></script>
 
     <link rel="canonical" href="https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-87-OSE-on-Red-Hat.html" />
     <meta name="referrer" content="origin" />
@@ -313,6 +313,17 @@ Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux</code>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_5th_step_install_dns_server">5th Step - Install DNS Server</h3>
+<div class="paragraph">
+<p><strong>Download DNS Server Packages</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@ns1 ~]# yum install named -y</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_5th_step_install_dependencies">5th Step - Install Dependencies</h3>
 <div class="paragraph">
 <p>weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need PreRequisite 1 dependencies it is <code>perl</code>, and the others zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not the older version around 700MiB.<br></p>
@@ -488,7 +499,7 @@ tye <code>Y</code> for accept installation</p>
         hljs.initHighlightingOnLoad();
       </script>
 
-    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1480860168055"></script>
+    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1480863689550"></script>
 
 
   </body>
