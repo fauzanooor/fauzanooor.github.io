@@ -62,6 +62,11 @@ The system has been registered with ID: 09e4090d-4f4a-462c-b31b-282625d2964d
 [root@ns1 ~]# subscription-manager attach --auto
 Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux
 
+=== 5th Step - Install DNS Server
+*Download DNS Server Packages*
+[source]
+[root@ns1 ~]# yum install named -y
+
 === 5th Step - Install Dependencies
 weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need PreRequisite 1 dependencies it is `perl`, and the others zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not the older version around 700MiB. +
 
