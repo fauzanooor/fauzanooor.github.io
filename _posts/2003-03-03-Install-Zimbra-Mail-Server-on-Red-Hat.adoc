@@ -16,5 +16,21 @@ if you using windows you can transfer with `WinSCP` or other ftp/scp client. +
 But if you are using linux or mac, you can use a `scp` command.
 
 === Third Step - Initial Configuration
-In this section, we'll configure on the networking side, like ip address, hostname, etc.
+In this section, we'll configure on the networking side, like ip address, hostname, etc. +
+> *IP Address*
+[source,bash]
+[root@zimbra ~]# nmtui
+┌────┤ NetworkManager TUI ├─────┐
+│                         	│
+│ Please select an option 	│
+│                         	│
+│ > Edit a connection <       	│
+│ Activate a connection   	│
+│ Set system hostname     	│
+│                         	│
+│ Quit                    	│
+│                         	│
+│                    <OK> 	│
+│				│
+└───────────────────────────────┘
 
