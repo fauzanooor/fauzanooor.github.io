@@ -29,7 +29,7 @@ zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz       100%  290MB  26.4MB/s   00:1
 In this section, we'll configure on the networking side, like ip address, hostname, etc. +
 
 *IP Address*
-[source,bash]
+[source]
 [root@zimbra ~]# nmtui
 
 image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/nmtui-main.png[]
