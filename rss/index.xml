@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[My Bloggg]]></title><description><![CDATA[Just another blogs.]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>My Bloggg</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Dec 2016 09:39:07 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server on Red Hat?]]></title><description><![CDATA[<div class="sect2">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[My Bloggg]]></title><description><![CDATA[Just another blogs.]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>My Bloggg</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Dec 2016 09:43:10 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server on Red Hat?]]></title><description><![CDATA[<div class="sect2">
 <h3 id="_1st_thing_to_do">1st thing to do..</h3>
 <div class="ulist">
 <ul>
@@ -67,7 +67,7 @@ Add new host</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@zimbra ~]# vi /etc/hosts
+<pre class="highlight"><code class="language-bash" data-lang="bash">[root@zimbra ~]# vi /etc/hosts
 ...
 100.100.100.3	ns1.zimbra.lab	ns1</code></pre>
 </div>
@@ -77,7 +77,7 @@ Add new host</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@zimbra ~]# hostnamectl set-hostname zimbra.lab
+<pre class="highlight"><code class="language-bash" data-lang="bash">[root@zimbra ~]# hostnamectl set-hostname zimbra.lab
 [root@zimbra ~]# hostname
 zimbra.lab</code></pre>
 </div>
@@ -90,7 +90,7 @@ zimbra.lab</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@zimbra ~]# subscription-manager register
+<pre class="highlight"><code class="language-bash" data-lang="bash">[root@zimbra ~]# subscription-manager register
 Registering to: subscription.rhn.redhat.com:443/subscription
 Username: zimbrazimbra
 Password:
@@ -102,7 +102,7 @@ The system has been registered with ID: 09e4090d-4f4a-462c-b31b-282625d2964d</co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@zimbra ~]# subscription-manager attach --auto
+<pre class="highlight"><code class="language-bash" data-lang="bash">[root@zimbra ~]# subscription-manager attach --auto
 Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux</code></pre>
 </div>
 </div>
