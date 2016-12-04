@@ -117,3 +117,7 @@ Install zimbra-spell [Y]
 Install zimbra-memcached [Y] 
 Install zimbra-proxy [Y]
 
+*Accept Installation*
+tye `Y` for accept installation
+[source]
+The system will be modified.  Continue? [N] y
