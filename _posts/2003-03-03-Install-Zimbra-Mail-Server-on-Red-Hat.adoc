@@ -2,35 +2,64 @@
 :hp-tags: installation, server
 :published_at: 2003-03-03
 
-=== First thing to do..
+=== 1st thing to do..
 
 * Download ZCS file from https://www.zimbra.com/downloads/zimbra-collaboration-open-source/[this link]
 * DNS Server installed with pointed mx record. (in this case, we'll install dns server in the same node with zimbra mail server)
+* Already have a subscription Red Hat account (trial or premium no problem). Check 
+** Check at this link for tutorial trial subscription Red Hat Account
 * coffee maybe?
 
 
-=== Second Step
+=== 2nd Step
 
 After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server. +
 if you using windows you can transfer with `WinSCP` or other ftp/scp client. +
-But if you are using linux or mac, you can use a `scp` command.
+But if you are using linux or mac, you can use a `scp` command. +
 
-=== Third Step - Initial Configuration
+Example with `scp` command
+[source]
+[Downloads] $ > scp zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz \
+fauzan@100.100.100.3:
+fauzan@100.100.100.3's password: 
+zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz       100%  290MB  26.4MB/s   00:11 
+
+
+=== 3th Step - Initial Configuration
 In this section, we'll configure on the networking side, like ip address, hostname, etc. +
-> *IP Address*
+
+*IP Address*
 [source,bash]
 [root@zimbra ~]# nmtui
-┌────┤ NetworkManager TUI ├─────┐
-│                         	│
-│ Please select an option 	│
-│                         	│
-│ > Edit a connection <       	│
-│ Activate a connection   	│
-│ Set system hostname     	│
-│                         	│
-│ Quit                    	│
-│                         	│
-│                    <OK> 	│
-│				│
-└───────────────────────────────┘
 
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/nmtui-main.png[]
+
+*Hosts and Hostname* +
+Add new host
+[source]
+[root@zimbra ~]# vi /etc/hosts
+...
+100.100.100.3	ns1.zimbra.lab	ns1
+
+Edit hostname
+[source]
+[root@zimbra ~]# hostnamectl set-hostname zimbra.lab
+[root@zimbra ~]# hostname
+zimbra.lab
+
+=== 4th Step - Register & Subscribe
+
+*Register*
+[source]
+[root@zimbra ~]# subscription-manager register
+Registering to: subscription.rhn.redhat.com:443/subscription
+Username: zimbrazimbra
+Password: 
+The system has been registered with ID: 09e4090d-4f4a-462c-b31b-282625d2964d
+
+*Subscribe* 
+[source]
+[root@zimbra ~]# subscription-manager attach --auto
+Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux
+
+=== 5th Step - Install Dependencies
