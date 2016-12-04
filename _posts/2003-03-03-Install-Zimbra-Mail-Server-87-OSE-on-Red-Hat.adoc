@@ -1,4 +1,4 @@
-= Install Zimbra Mail Server on Red Hat?
+= Install Zimbra Mail Server 8.7 OSE on Red Hat?
 :hp-tags: installation, server
 :published_at: 2003-03-03
 
@@ -17,10 +17,9 @@ After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Serv
 if you using windows you can transfer with `WinSCP` or other ftp/scp client. +
 But if you are using linux or mac, you can use a `scp` command. +
 
-Example with `scp` command
-
+*Example with `scp` command*
 [source]
-[Downloads] $ > scp zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz \
+(Downloads) $ > scp zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz \
 fauzan@100.100.100.3
 fauzan@100.100.100.3's password: 
 zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz       100%  290MB  26.4MB/s   00:11 
@@ -44,15 +43,15 @@ Add new host
 
 Edit hostname
 [source]
-[root@zimbra ~]# hostnamectl set-hostname zimbra.lab
+[root@zimbra ~]# hostnamectl set-hostname ns1.zimbra.lab
 [root@zimbra ~]# hostname
-zimbra.lab
+ns1.zimbra.lab
 
 === 4th Step - Register & Subscribe
 
 *Register*
 [source]
-[root@zimbra ~]# subscription-manager register
+[root@ns1 ~]# subscription-manager register
 Registering to: subscription.rhn.redhat.com:443/subscription
 Username: zimbrazimbra
 Password: 
@@ -60,7 +59,61 @@ The system has been registered with ID: 09e4090d-4f4a-462c-b31b-282625d2964d
 
 *Subscribe* 
 [source]
-[root@zimbra ~]# subscription-manager attach --auto
+[root@ns1 ~]# subscription-manager attach --auto
 Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux
 
 === 5th Step - Install Dependencies
+weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need PreRequisite 1 dependencies it is `perl`, and the others zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not the older version around 700MiB. +
+
+*Install perl*
+[source]
+[root@ns1 ~]# yum install perl -y
+
+=== 6th Step - Extract & Install
+go to directory of the ZCS file located, in this case, i put it on `/home/fauzan/`
+
+[source]
+[root@ns1 ~]# cd /home/fauzan/
+
+*extract*
+[source]
+[root@zimbra fauzan]# tar -xzf zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz
+
+*install*
+go to `zcs-8.7.1...` directory, and install
+[source]
+[root@zimbra fauzan]# cd zcs-8.7.1_GA_1670.RHEL7_64.20161025045328
+[root@zimbra zcs-8.7.1_GA_1670.RHEL7_64.20161025045328]# ./install.sh 
+
+*license agreement*
+type `Y` for license agreement choice
+[source]
+...
+License Terms for this Zimbra Collaboration Suite Software:
+https://www.zimbra.com/license/zimbra-public-eula-2-6.html
+----------------------------------------------------------------------
+
+Do you agree with the terms of the software license agreement? [N] y
+
+*Zimbra Repository*
+type `Y` or hit `enter` to use zimbra package repository
+[source]
+...
+Use Zimbra's package repository [Y] 
+
+*Installing Packages*
+type `Y` or hit `enter` for installing selection packages, in this case i'll install all of the zimbra packages.
+[source]
+...
+Select the packages to install
+Install zimbra-ldap [Y]
+Install zimbra-logger [Y] 
+Install zimbra-mta [Y] 
+Install zimbra-dnscache [Y] 
+Install zimbra-snmp [Y] 
+Install zimbra-store [Y] 
+Install zimbra-apache [Y] 
+Install zimbra-spell [Y] 
+Install zimbra-memcached [Y] 
+Install zimbra-proxy [Y]
+
