@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Install Zimbra Mail Server on Red Hat?</title>
+    <meta name="description" content="" />
+    <link href="//fonts.googleapis.com/css?family=Noto+Sans:300,400,700" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//fauzanooor.github.io/themes/saga/assets/css/style.css?v=1480829719109" rel="stylesheet" type="text/css">
+    <link href="//fauzanooor.github.io/themes/saga/assets/css/animate.min.css?v=1480829719109" rel="stylesheet" type="text/css">
+    <link href="https://fauzanooor.github.io/favicon.ico" rel="shortcut icon">
+    <link rel="canonical" href="https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="My Bloggg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Install Zimbra Mail Server on Red Hat?" />
+    <meta property="og:description" content="First thing to do.. Download ZCS file from this link DNS Server installed with pointed mx record. (in this case, we&amp;#8217;ll install dns server in the same node with zimbra mail server) coffee maybe? Second Step After you downloaded the ZCS file, and just transfer it to your" />
+    <meta property="og:url" content="https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html" />
+    <meta property="article:tag" content="installation" />
+    <meta property="article:tag" content=" server" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Install Zimbra Mail Server on Red Hat?" />
+    <meta name="twitter:description" content="First thing to do.. Download ZCS file from this link DNS Server installed with pointed mx record. (in this case, we&amp;#8217;ll install dns server in the same node with zimbra mail server) coffee maybe? Second Step After you downloaded the ZCS file, and just transfer it to your" />
+    <meta name="twitter:url" content="https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="My Bloggg" href="https://fauzanooor.github.io/rss/" />
+</head>
+<body class="post-template tag-installation tag-server">
+    <header id="header" class="animated fadeIn">
+    <div class="header-background">
+    <section class="blog-content">
+        <a id="site-url" class="blog-title" href="https://fauzanooor.github.io">My Bloggg</a>
+        <span class="blog-description">Just another blogs.</span>
+        <nav class="links fadeIn animated">
+            <ul>
+                <li class="rss"><a title="RSS Feed" href="/rss/"><i class="fa fa-fw fa-rss-square"></i></a></li>
+        
+            </ul>
+        </nav>
+    </section>
+    <section class="header-content">
+        <h1 class="post-title animated fadeInUp">Install Zimbra Mail Server on Red Hat?</h1>
+        <span class="post-data"><span class="date animated fadeInUp"><i class="fa fa-clock-o"></i> <time class="timesince date" data-timesince="1046624400" datetime="2003-03-03T00:00" title="03 March 2003">14 years ago</time></span>
+            <span class="tags animated fadeInUp"><i class="fa fa-tags"></i> <a href="https://fauzanooor.github.io/tag/installation/">installation</a>, <a href="https://fauzanooor.github.io/tag/server/"> server</a></span>
+            <span class="author animated fadeInUp"><i class="fa fa-user"></i> <a href="https://fauzanooor.github.io/author/fauzanooor/">fauzan</a></span></span>
+    </section>
+    </div>
+</header>
+<main id="main" class="content">
+    <article itemtype="http://schema.org/BlogPosting" class="animated fadeIn content post post tag-installation tag-server">
+        <section class="post-content">
+            <div class="sect2">
+<h3 id="_first_thing_to_do">First thing to do..</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Download ZCS file from <a href="https://www.zimbra.com/downloads/zimbra-collaboration-open-source/">this link</a></p>
+</li>
+<li>
+<p>DNS Server installed with pointed mx record. (in this case, we&#8217;ll install dns server in the same node with zimbra mail server)</p>
+</li>
+<li>
+<p>coffee maybe?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_second_step">Second Step</h3>
+<div class="paragraph">
+<p>After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server.<br>
+if you using windows you can transfer with <code>WinSCP</code> or other ftp/scp client.<br>
+But if you are using linux or mac, you can use a <code>scp</code> command.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_third_step_initial_configuration">Third Step - Initial Configuration</h3>
+<div class="paragraph">
+<p>In this section, we&#8217;ll configure on the networking side, like ip address, hostname, etc.<br>
+&gt; <strong>IP Address</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">[root@zimbra ~]# nmtui
+┌────┤ NetworkManager TUI ├─────┐
+│                         	│
+│ Please select an option 	│
+│                         	│
+│ &gt; Edit a connection &lt;       	│
+│ Activate a connection   	│
+│ Set system hostname     	│
+│                         	│
+│ Quit                    	│
+│                         	│
+│                    &lt;OK&gt; 	│
+│				│
+└───────────────────────────────┘</code></pre>
+</div>
+</div>
+</div>
+        </section>
+
+    
+        <section class="post-comments">
+          <div id="disqus_thread"></div>
+          <script type="text/javascript">
+          var disqus_shortname = 'fauzanooor-github-io'; // required: replace example with your forum shortname
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+    
+    </article>
+
+</main>
+    <footer class="animated fadeIn" id="footer">
+        <section class="colophon">
+          <section class="copyright">Copyright &copy; <span itemprop="copyrightHolder">My Bloggg</span>. <span rel="license">All Rights Reserved</span>.</section>
+          <section class="poweredby">Published with <a class="icon-ghost" href="http://hubpress.io">HubPress</a></section>
+        </section>
+        <section class="bottom">
+          <section class="attribution">
+            <a href="http://github.com/Reedyn/Saga">Built with <i class="fa fa-heart"></i> and Free and Open-Source Software</a>.
+          </section>
+        </section>
+    </footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+    <script src="//fauzanooor.github.io/themes/saga/assets/js/scripts.js?v=1480829719109"></script>
+    
+</body>
+</html>
