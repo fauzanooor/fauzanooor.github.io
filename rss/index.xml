@@ -1,4 +1,116 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Dec 2016 10:05:38 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[NCMPCPP on OpenSUSE]]></title><description><![CDATA[<div class="imageblock" style="text-align: center">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 04 Dec 2016 10:06:08 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server on Red Hat?]]></title><description><![CDATA[<div class="sect2">
+<h3 id="_1st_thing_to_do">1st thing to do..</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Download ZCS file from <a href="https://www.zimbra.com/downloads/zimbra-collaboration-open-source/">this link</a></p>
+</li>
+<li>
+<p>DNS Server installed with pointed mx record. (in this case, we&#8217;ll install dns server in the same node with zimbra mail server)</p>
+</li>
+<li>
+<p>Already have a subscription Red Hat account (trial or premium no problem). Check</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Check at this link for tutorial trial subscription Red Hat Account</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>coffee maybe?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2nd_step">2nd Step</h3>
+<div class="paragraph">
+<p>After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server.<br>
+if you using windows you can transfer with <code>WinSCP</code> or other ftp/scp client.<br>
+But if you are using linux or mac, you can use a <code>scp</code> command.<br></p>
+</div>
+<div class="paragraph">
+<p>Example with <code>scp</code> command</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[Downloads] $ &gt; scp zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz \
+fauzan@100.100.100.3
+fauzan@100.100.100.3's password:
+zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz       100%  290MB  26.4MB/s   00:11</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3th_step_initial_configuration">3th Step - Initial Configuration</h3>
+<div class="paragraph">
+<p>In this section, we&#8217;ll configure on the networking side, like ip address, hostname, etc.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>IP Address</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@zimbra ~]# nmtui</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/nmtui-main.png" alt="nmtui main.png">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Hosts and Hostname</strong><br>
+Add new host</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@zimbra ~]# vi /etc/hosts
+...
+100.100.100.3	ns1.zimbra.lab	ns1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Edit hostname</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@zimbra ~]# hostnamectl set-hostname zimbra.lab
+[root@zimbra ~]# hostname
+zimbra.lab</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_4th_step_register_subscribe">4th Step - Register &amp; Subscribe</h3>
+<div class="paragraph">
+<p><strong>Register</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@zimbra ~]# subscription-manager register
+Registering to: subscription.rhn.redhat.com:443/subscription
+Username: zimbrazimbra
+Password:
+The system has been registered with ID: 09e4090d-4f4a-462c-b31b-282625d2964d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Subscribe</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@zimbra ~]# subscription-manager attach --auto
+Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5th_step_install_dependencies">5th Step - Install Dependencies</h3>
+
+</div>]]></description><link>https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html</link><guid isPermaLink="true">https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-on-Red-Hat.html</guid><category><![CDATA[installation]]></category><category><![CDATA[ server]]></category><dc:creator><![CDATA[fauzan]]></dc:creator><pubDate>Mon, 03 Mar 2003 00:00:00 GMT</pubDate></item><item><title><![CDATA[NCMPCPP on OpenSUSE]]></title><description><![CDATA[<div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/spectre.gif" alt="spectre.gif">
 </div>
