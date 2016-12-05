@@ -38,9 +38,9 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/main.min.css?v=1480929811067"/>
-    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/custom.css?v=1480929811067"/>
-    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1480929811067"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/main.min.css?v=1480929928253"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/custom.css?v=1480929928253"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1480929928253"/>
 
 
 
@@ -70,7 +70,7 @@
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
 
-    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/head-scripts.min.js?v=1480929811067"></script>
+    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/head-scripts.min.js?v=1480929928253"></script>
 
     <link rel="canonical" href="https://fauzanooor.github.io/2003/03/03/Install-Zimbra-Mail-Server-87-OSE-on-Red-Hat.html" />
     <meta name="referrer" content="origin" />
@@ -362,7 +362,7 @@ zone "100.100.100.in-addr.arpa" IN {
 <div class="sect2">
 <h3 id="_5_2_create_database_zone">5.2 - Create Database Zone</h3>
 <div class="paragraph">
-<p><strong>Create database zone for domain</strong></p>
+<p><strong>Create domain database zone</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -375,11 +375,30 @@ $TTL 86400
         604800      ;Expire
         86400       ;Minimum TTL
 )
-		NS		ns1.zimbra.lab.
-		MX 10	mail.zimbra.lab.
-        A		100.100.100.3
-ns1		A		100.100.100.3
-mail	A		100.100.100.3</code></pre>
+		NS			ns1.zimbra.lab.
+		MX 10		mail.zimbra.lab.
+        A			100.100.100.3
+ns1		A			100.100.100.3
+mail	A			100.100.100.3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Create reverse database zone</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@ns1 ~]# vi /var/named/db.100.100.100
+$TTL 86400
+@   IN  SOA     	ns1.zimbra.lab. root.zimbra.lab. (
+        2014071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL
+)
+		NS			ns1.zimbra.lab.
+10      PTR			ns1.zimbra.lab.
+10		PTR			mail.zimbra.lab.</code></pre>
 </div>
 </div>
 </div>
@@ -557,7 +576,7 @@ tye <code>Y</code> for accept installation</p>
         hljs.initHighlightingOnLoad();
       </script>
 
-    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1480929811067"></script>
+    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1480929928253"></script>
 
 
   </body>
