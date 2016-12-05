@@ -127,7 +127,7 @@ $TTL 86400
 10		PTR			mail.zimbra.lab.
 
 === Step 5.3 - Starting BIND
-*Change owner permission for database file*
+*Change owner permission for all of database zones file*
 [source]
 [root@ns1 ~]# chown root:named /var/named/db*
 
