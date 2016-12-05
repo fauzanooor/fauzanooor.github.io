@@ -11,7 +11,7 @@
 * coffee maybe?
 
 
-=== 2nd Step
+=== Step 2
 
 After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server. +
 if you using windows you can transfer with `WinSCP` or other ftp/scp client. +
@@ -25,7 +25,7 @@ image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/winsc
 fauzan@100.100.100.3's password: 
 zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz			100%  290MB  36.3MB/s   00:08
 
-=== 3th Step - Initial Configuration
+=== Step 3 - Initial Configuration
 In this section, we'll configure on the networking side, like ip address, hostname, etc. +
 
 *IP Address*
@@ -47,7 +47,7 @@ Edit hostname
 [root@zimbra ~]# hostname
 ns1.zimbra.lab
 
-=== 4th Step - Register & Subscribe
+=== Step 4 - Register & Subscribe
 
 *Register*
 [source]
@@ -62,10 +62,54 @@ The system has been registered with ID: 09e4090d-4f4a-462c-b31b-282625d2964d
 [root@ns1 ~]# subscription-manager attach --auto
 Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux
 
-=== 5th Step - Install DNS Server
+=== Step 5 - Install DNS Server
 *Download DNS Server Packages*
 [source]
-[root@ns1 ~]# yum install named -y
+[root@ns1 ~]# yum install bind bind-utils -y
+
+=== Step 5.1 - Configure DNS Server
+Open `named.conf` file configuration, edit & add some configuration options
+[source]
+[root@ns1 ~]# vi /etc/named.conf
+...
+options {
+        listen-on port 53 { 127.0.0.1; 100.100.100.3; };
+        ...
+        allow-query     { localhost; 100.100.100.0/24; };
+        allow-transfer  { localhost; 100.100.100.0/24; };
+...
+
+*still at the same file, create new zone*
+[source]
+...
+zone "zimbra.lab" IN {
+                type master;
+                file "db.zimbra.lab";
+                allow-update { none; };
+};
+zone "100.100.100.in-addr.arpa" IN {
+                type master;
+                file "db.100.100.100";
+                allow-update { none; };
+};
+
+=== 5.2 - Create Database Zone
+*Create database zone for domain*
+[source]
+[root@ns1 ~]# vi /var/named/db.zimbra.lab
+$TTL 86400
+@   IN  SOA     	ns1.zimbra.lab. root.zimbra.lab. (
+        2014071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL
+)
+		NS		ns1.zimbra.lab.		
+		MX 10	mail.zimbra.lab.
+        A		100.100.100.3
+ns1		A		100.100.100.3
+mail	A		100.100.100.3
 
 === 5th Step - Install Dependencies
 weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need PreRequisite 1 dependencies it is `perl`, and the others zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not the older version around 700MiB. +
