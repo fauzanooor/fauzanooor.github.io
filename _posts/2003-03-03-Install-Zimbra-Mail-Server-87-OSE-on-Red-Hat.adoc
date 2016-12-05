@@ -79,7 +79,7 @@ options {
         allow-transfer  { localhost; 100.100.100.0/24; };
 ...
 
-*still at the same file, create new zone*
+*still in same file, create new zone*
 [source]
 ...
 zone "zimbra.lab" IN {
