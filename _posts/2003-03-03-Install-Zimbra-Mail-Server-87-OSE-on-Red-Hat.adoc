@@ -96,8 +96,7 @@ type `Y` for license agreement choice
 ...
 License Terms for this Zimbra Collaboration Suite Software:
 https://www.zimbra.com/license/zimbra-public-eula-2-6.html
-----------------------------------------------------------------------
-
+---------------------------------------------------------------------
 Do you agree with the terms of the software license agreement? [N] y
 
 *Zimbra Repository*
