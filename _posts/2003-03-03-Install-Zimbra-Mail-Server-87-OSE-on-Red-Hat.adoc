@@ -94,7 +94,7 @@ zone "100.100.100.in-addr.arpa" IN {
 };
 
 === 5.2 - Create Database Zone
-*Create database zone for domain*
+*Create domain database zone*
 [source]
 [root@ns1 ~]# vi /var/named/db.zimbra.lab
 $TTL 86400
@@ -105,11 +105,26 @@ $TTL 86400
         604800      ;Expire
         86400       ;Minimum TTL
 )
-		NS		ns1.zimbra.lab.		
-		MX 10	mail.zimbra.lab.
-        A		100.100.100.3
-ns1		A		100.100.100.3
-mail	A		100.100.100.3
+		NS			ns1.zimbra.lab.		
+		MX 10		mail.zimbra.lab.
+        A			100.100.100.3
+ns1		A			100.100.100.3
+mail	A			100.100.100.3
+
+*Create reverse database zone*
+[source]
+[root@ns1 ~]# vi /var/named/db.100.100.100
+$TTL 86400
+@   IN  SOA     	ns1.zimbra.lab. root.zimbra.lab. (
+        2014071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL
+)
+		NS			ns1.zimbra.lab.
+10      PTR			ns1.zimbra.lab.
+10		PTR			mail.zimbra.lab.
 
 === 5th Step - Install Dependencies
 weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need PreRequisite 1 dependencies it is `perl`, and the others zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not the older version around 700MiB. +
