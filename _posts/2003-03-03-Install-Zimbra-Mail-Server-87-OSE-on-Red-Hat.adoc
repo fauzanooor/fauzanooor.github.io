@@ -93,7 +93,7 @@ zone "100.100.100.in-addr.arpa" IN {
                 allow-update { none; };
 };
 
-=== 5.2 - Create Database Zone
+=== Step 5.2 - Create Database Zone
 *Create domain database zone*
 [source]
 [root@ns1 ~]# vi /var/named/db.zimbra.lab
@@ -126,8 +126,25 @@ $TTL 86400
 10      PTR			ns1.zimbra.lab.
 10		PTR			mail.zimbra.lab.
 
-=== 5th Step - Install Dependencies
-weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need PreRequisite 1 dependencies it is `perl`, and the others zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not the older version around 700MiB. +
+=== Step 5.3 - Starting BIND
+*Change owner permission for database file*
+[source]
+[root@ns1 ~]# chown root:named /var/named/db*
+
+*Permit dns service on the firewall*
+[source]
+[root@ns1 ~]# firewall-cmd --add-service=dns --permanent
+success
+[root@ns1 ~]# firewall-cmd --reload
+success
+
+*Start BIND service*
+[source]
+[root@ns1 ~]# systemctl start named
+[root@ns1 ~]# systemctl enable named
+
+=== Step 6 - Install Dependencies
+weeeell weel weell, in the Zimbra 8.7 version, to install zimbra just need 1 dependencies, it is `perl`, and the others dependencies, zimbra installation script will take care of them (online downloader). Thats why the size of Zimbra 8.7 version just around 300MiB, not like the older version around 700MiB. +
 
 *Install perl*
 [source]
