@@ -82,13 +82,13 @@ go to directory of the ZCS file located, in this case, i put it on `/home/fauzan
 
 *extract*
 [source]
-[root@zimbra fauzan]# tar -xzf zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz
+[root@ns1 fauzan]# tar -xzf zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz
 
 *install*
-go to `zcs-8.7.1...` directory, and install
+go to `zcs-8.7.1.xxx` directory, and install
 [source]
-[root@zimbra fauzan]# cd zcs-8.7.1_GA_1670.RHEL7_64.20161025045328
-[root@zimbra zcs-8.7.1_GA_1670.RHEL7_64.20161025045328]# ./install.sh 
+[root@ns1 fauzan]# cd zcs-8.7.1_GA_1670.RHEL7_64.20161025045328
+[root@ns1 zcs-8.7.1_GA_1670.RHEL7_64.20161025045328]# ./install.sh 
 
 *license agreement*
 type `Y` for license agreement choice
