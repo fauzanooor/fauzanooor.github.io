@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 05 Dec 2016 08:58:48 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server 8.7 OSE on Red Hat?]]></title><description><![CDATA[<div class="sect2">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 05 Dec 2016 09:05:29 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server 8.7 OSE on Red Hat?]]></title><description><![CDATA[<div class="sect2">
 <h3 id="_1st_thing_to_do">1st thing to do..</h3>
 <div class="ulist">
 <ul>
@@ -148,17 +148,17 @@ Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@zimbra fauzan]# tar -xzf zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz</code></pre>
+<pre class="highlight"><code>[root@ns1 fauzan]# tar -xzf zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p><strong>install</strong>
-go to <code>zcs-8.7.1&#8230;&#8203;</code> directory, and install</p>
+go to <code>zcs-8.7.1.xxx</code> directory, and install</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@zimbra fauzan]# cd zcs-8.7.1_GA_1670.RHEL7_64.20161025045328
-[root@zimbra zcs-8.7.1_GA_1670.RHEL7_64.20161025045328]# ./install.sh</code></pre>
+<pre class="highlight"><code>[root@ns1 fauzan]# cd zcs-8.7.1_GA_1670.RHEL7_64.20161025045328
+[root@ns1 zcs-8.7.1_GA_1670.RHEL7_64.20161025045328]# ./install.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
