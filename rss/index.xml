@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 05 Dec 2016 09:07:21 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server 8.7 OSE on Red Hat?]]></title><description><![CDATA[<div class="sect2">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Mon, 05 Dec 2016 09:23:31 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Install Zimbra Mail Server 8.7 OSE on Red Hat?]]></title><description><![CDATA[<div class="sect2">
 <h3 id="_1st_thing_to_do">1st thing to do..</h3>
 <div class="ulist">
 <ul>
@@ -25,7 +25,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_2nd_step">2nd Step</h3>
+<h3 id="_step_2">Step 2</h3>
 <div class="paragraph">
 <p>After you downloaded the ZCS file, and just transfer it to your Zimbra Mail Server.<br>
 if you using windows you can transfer with <code>WinSCP</code> or other ftp/scp client.<br>
@@ -45,7 +45,7 @@ zcs-8.7.1_GA_1670.RHEL7_64.20161025045328.tgz			100%  290MB  36.3MB/s   00:08</c
 </div>
 </div>
 <div class="sect2">
-<h3 id="_3th_step_initial_configuration">3th Step - Initial Configuration</h3>
+<h3 id="_step_3_initial_configuration">Step 3 - Initial Configuration</h3>
 <div class="paragraph">
 <p>In this section, we&#8217;ll configure on the networking side, like ip address, hostname, etc.<br></p>
 </div>
@@ -85,7 +85,7 @@ ns1.zimbra.lab</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_4th_step_register_subscribe">4th Step - Register &amp; Subscribe</h3>
+<h3 id="_step_4_register_subscribe">Step 4 - Register &amp; Subscribe</h3>
 <div class="paragraph">
 <p><strong>Register</strong></p>
 </div>
@@ -109,13 +109,73 @@ Successfully attached a subscription for: 30 Day Red Hat Enterprise Linux</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_5th_step_install_dns_server">5th Step - Install DNS Server</h3>
+<h3 id="_step_5_install_dns_server">Step 5 - Install DNS Server</h3>
 <div class="paragraph">
 <p><strong>Download DNS Server Packages</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[root@ns1 ~]# yum install named -y</code></pre>
+<pre class="highlight"><code>[root@ns1 ~]# yum install bind bind-utils -y</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_step_5_1_configure_dns_server">Step 5.1 - Configure DNS Server</h3>
+<div class="paragraph">
+<p>Open <code>named.conf</code> file configuration, edit &amp; add some configuration options</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@ns1 ~]# vi /etc/named.conf
+...
+options {
+        listen-on port 53 { 127.0.0.1; 100.100.100.3; };
+        ...
+        allow-query     { localhost; 100.100.100.0/24; };
+        allow-transfer  { localhost; 100.100.100.0/24; };
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>still at the same file, create new zone</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>...
+zone "zimbra.lab" IN {
+                type master;
+                file "db.zimbra.lab";
+                allow-update { none; };
+};
+zone "100.100.100.in-addr.arpa" IN {
+                type master;
+                file "db.100.100.100";
+                allow-update { none; };
+};</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_2_create_database_zone">5.2 - Create Database Zone</h3>
+<div class="paragraph">
+<p><strong>Create database zone for domain</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>[root@ns1 ~]# vi /var/named/db.zimbra.lab
+$TTL 86400
+@   IN  SOA     	ns1.zimbra.lab. root.zimbra.lab. (
+        2014071001  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL
+)
+		NS		ns1.zimbra.lab.
+		MX 10	mail.zimbra.lab.
+        A		100.100.100.3
+ns1		A		100.100.100.3
+mail	A		100.100.100.3</code></pre>
 </div>
 </div>
 </div>
