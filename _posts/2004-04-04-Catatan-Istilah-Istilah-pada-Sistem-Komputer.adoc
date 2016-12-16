@@ -1,0 +1,120 @@
+= Catatan Istilah-Istilah pada Sistem Komputer
+:published_at: 2004-04-04
+:hp-tags: catatan, isitilah, komputer
+
+
+
+=== A
+
+
+=== B
+
+
+=== C
+
+
+=== D
+
+* `Daemon` adalah sebuah program dari komputer yang sedang berjalan, namun tidak terlihat proses kerjanya(background process)
+
+=== E
+
+
+=== F
+
+
+=== G
+
+
+=== H
+
+
+=== I
+
+* `init` (Initialization) adalah sebuah "proses" yang pertama kali menyala pada sistem komputer.
+** `init` prosesnya akan terus berjalan sampai sistem komputer tersebut mati (shut down).
+
+* `instance` adalah sebuah object
+** `instance` pada openstack bisa dikatakan sebagai virtual machine
+
+
+=== J
+
+
+=== K
+
+* *kernel* (nucleus) > sebuah program komputer yang mana menjadi inti dari sebuah sistem operasi pada komputer
+** *Kernel* akan mengatur semua yang ada pada system yg digunakan.
+
+* *Kernel Panic* > sebuah kesalahan fatal dari sistem operasi (internal fatal error), yang mana tidak dapat dipulihkan dengan aman.
+** *Kernel panic* biasa terjadi pada sistem Unix dan Unix-like, kalo di Microsoft Windows, namanya BSOD (Blue Screen of Death).
+
+* *Kernel Space* > sebuah "space" yang disediakan khusus untuk menajalankan hak2 istimewa (privileged) kernel pada sistem operasi, extensi kernel (extensions kernel), dan juga beberapa "drivers".
+
+=== L
+
+* *Linux-VServer* > teknologi yang menggunakan mekanisme "jail" (dari BSD), yang mana digunakan untuk "mempartisi" agar dapat meningkatkan keamanan dari sumber daya pada sistem komputer, seperti file system, cpu time, network adress dan memeory
+** *Linux-VServer* > "partisi" tersebut bisa disebut "security context" dan juga "virtualized system dalam VPS".
+** *Linux-VServer* > adalah sebuah "chroot-like" yang digunakan untuk menyediakan konteks keamanan (security context).
+** *Linux-VServer* > menyediakan virtualisasi untuk sistem GNU/Linux yang mana menggunakan teknik isolasi pada sisi kernel (kernel level isolation)
+** *Linux-VServer* > dapat menjalankan beberapa "unit" virtual sekaligus.
+
+=== M
+
+
+=== N
+
+* `namespace` adalah sebuah fitur dari kernel linux yang dapat mengisolasi dan mem-virtual sumber daya sistem yang ada di dalam "proses"
+** `namespace` adalah sumber daya dalam "proses" tersebut contohnya seperti proses ID, hostnames, user ID, akses netowrk, interprocess communication, dan juga filesystems.
+** `namespace` adalah landasan dari teori container pada linux.
+
+=== O
+
+
+=== P
+
+* *Process* > sebuah "instance" (objek) dari program komputer yang sedang di gunakan (executed).
+
+=== Q
+
+
+=== R
+
+* *Runtime* (execution time) > istilah yg menunjukkan "waktu" yang digunakan oleh program yang sedang berjalan (executing).
+
+=== S
+
+* `syslog` adalah standar untuk format dari pesan log (message logging)
+** `syslog` akan menghasilkan beberapa pesan dari system/software yang digunakan agar dapat di analisa.
+
+* *System Call* > sebuah istilah yang mana, sebuah program komputer akan meminta (request) layanan (service) dari kernel pada sistem operasinya.
+** *System Call* menyediakan interface yang penting antara proses dan sistem operasi
+
+
+
+=== T
+
+
+=== U
+
+* *User space* (userland) > semua "code" yang berjalan di luar dari kernel pada sistem operasinya.
+** *User space* biasanya dianggap sama dengan "libraries" yang digunakan oleh sistem operasi untuk berinteraksi dengan kernel.
+** *User space* adalah area memory yang dimana aplikasi software dan beberapa "drivers" dijalankan.
+
+=== V
+
+
+=== W
+
+
+=== X
+
+
+=== Y
+
+
+=== Z
+
+
+
+
