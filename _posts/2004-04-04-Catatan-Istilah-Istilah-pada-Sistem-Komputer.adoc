@@ -12,6 +12,8 @@
 
 === C
 
+* `Checkpointing` adalah sebuah teknik untuk menambahkan fault tolerance pada sistem komputer
+** `Checkpointing` sebenarnya adalah sebuah snapshot yang disimpan dari VM atau aplikasi, sehingga kita bisa menyalakan ulang VM atau aplikasi tersebut.
 
 === D
 
