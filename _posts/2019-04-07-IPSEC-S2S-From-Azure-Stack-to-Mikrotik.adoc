@@ -14,7 +14,7 @@
  ** Default subnet (that used by VM(s) : 10.0.0.0/24
  ** Gateway subnet : 10.0.1.0/27
 
-image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/GatewaySubnet.PNG[GatewaySubnet]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/GatewaySubnet.PNG[GatewaySubnet]
 
 . Create Virtual Network Gateway (VNG), and for the type I think it's no problem at all if you choose basic or higher, but in this tutorial I choose basic. (Also ignore the warning that said provisioning VNG up to 45 minutes. Because creating VNG in AzureStack is really really really faster than AzurePublic haha).
  ** FYI, Public IP is will not appear yet, until you create the connection between VNG and Local Network Gateway (LNG)
@@ -22,14 +22,14 @@ image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/Gat
  ** IP address (Public IP that used by Mikrotik VPN) : xxx.xxx.xxx.188
  ** Address space (local address that used by local network behind Mikrotik) : 192.168.100.0/24
 
-image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/LNG.PNG[LNG]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/LNG.PNG[LNG]
 
 . Create connection, and here's the example parameters:
  ** Virtual Network Gateway : choose your VNG that created in the step 2
  ** Local Network Gateway : choose your LNG that created in the step 3
  ** Shared key (also known as Pre-Shared Key (PSK)) : 5z4ZNenz8Mkk
 
-image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/Connection.PNG[Connection]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/Connection.PNG[Connection]
 
 . Just that, and let's move on to Mikrotik Site
  ** Also you can check to public IP that used by VNG, it should be appear now. And usually azure stack will use xxx.xxx.xxx.*2* for all VNGs
@@ -44,8 +44,8 @@ image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/Con
  ** SA dst. address (Public IP that used by VNG) : xxx.xxx.xxx.2
  ** Proposal : default
 
-image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-general.PNG[ipsec-policy-general]
-image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-action.PNG[ipsec-policy-action]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/ipsec-policy-general.PNG[ipsec-policy-general]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/ipsec-policy-action.PNG[ipsec-policy-action]
 
 . Create policy proposal, and here's the parameters (should be same) :
  ** Auth. algorithm : SHA26
@@ -53,7 +53,7 @@ image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipse
  ** Lifetime : 07:30:00
  ** PFS Group : none
 
-image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/proposal.PNG[proposal]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/proposal.PNG[proposal]
 
 . Create peer, and here's the parameters (should be same) :
  ** Address (Public IP that used by Azure Stack's VNG) : xxx.xxx.xxx.2
@@ -62,7 +62,7 @@ image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/pro
  ** Exchange mode : IKE2
  ** Secret (shared key) : 5z4ZNenz8Mkk
 
-image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer.PNG[peer]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/peer.PNG[peer]
 
 . Create peer profile, and here's the parameters (should be same) :
  ** Hash algorithm : SHA256
@@ -72,12 +72,12 @@ image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/pee
  ** Lifetime : 08:00:00
  ** Lifebytes : 33553408
 
-image::https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-profile-2.PNG[peer-profile-2]
+image::https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/peer-profile-2.PNG[peer-profile-2]
 
 . After that the VPN IPSec status it's should be also _established_, and if we check from the Mikrotik's logs, there is _peer authorized_ log appear, like these screenshots below.
 
-image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/established.PNG[established]
-image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-authorized.PNG[peer-authorized]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/established.PNG[established]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/peer-authorized.PNG[peer-authorized]
     * Also, the connection status on azure stack site it should be change to _connected_
 
 . And the final step is create NAT rule, and here's the example parameters :
@@ -86,8 +86,8 @@ image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer
  ** Dst. address (Local network that used by Azure Stack site) : 10.0.0.0/24
  ** Action : accept
 
-image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule1.PNG[NatRule1]
-image:https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule2-1.PNG[NatRule2-1]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/NatRule1.PNG[NatRule1]
+image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/NatRule2-1.PNG[NatRule2-1]
 
 == UPDATE!!
 
