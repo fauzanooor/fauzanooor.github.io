@@ -5,6 +5,7 @@
 == Requirements (As far I know ya hehe)
 
 * Any mikrotik device or appliance with ROS v6.43.2 or later
+** If you are using v6.42.x, I really recommended to upgrade, because in my experience, this version have a lot of problems with IPSec tunnel.
 * Azure Stack version 1808 or later
 
 == How to - Azure Stack Site
@@ -91,7 +92,7 @@ image:https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/NatRu
 
 == UPDATE!!
 
-* If you have problem with can't access SSH or etc via this IPSec S2S, maybe the problem came from the MTU issue, that the value is not same with Azure Stack VNG and the VMs behind it. And the solution is you can change the MTU on the VM(s) to 1350.
+* If you have an issue with you cannot access SSH or etc via this IPSec S2S, maybe issue came from the MTU, which is booth MTU value from Azure Stack VNG and VMs behind it are not same. And the solution is you can change the MTU on the VM(s) to 1350.
 * Or if you have many VM(s), you can setup mangle rule from Mikrotik. And here's script
 `ip firewall mangle add action=change-mss chain=forward new-mss=1350 out-interface=ether1 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1351-65535`
 `ip firewall mangle add action=change-mss chain=forward in-interface=ether1 new-mss=1350 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1351-65535`
