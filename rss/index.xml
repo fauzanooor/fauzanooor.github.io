@@ -1,4 +1,327 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Fri, 23 Dec 2016 16:28:06 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Catatan Istilah-Istilah pada Sistem Komputer]]></title><description><![CDATA[<div class="sect2">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Apr 2019 04:52:02 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[IPSEC S2S - From Azure Stack to Mikrotik]]></title><description><![CDATA[<div class="sect1">
+<h2 id="_requirements_as_far_i_know_ya_hehe">Requirements (As far I know ya hehe)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Any mikrotik device or appliance with ROS v6.43.2 or later</p>
+</li>
+<li>
+<p>Azure Stack version 1808 or later</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_azure_stack_site">How to - Azure Stack Site</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create Subnet Gateway in the Virtual Network, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Address space : 10.0.0.0/23</p>
+</li>
+<li>
+<p>Default subnet (that used by VM(s) : 10.0.0.0/24</p>
+</li>
+<li>
+<p>Gateway subnet : 10.0.1.0/27</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/GatewaySubnet.PNG" alt="GatewaySubnet">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create Virtual Network Gateway (VNG), and for the type I think it&#8217;s no problem at all if you choose basic or higher, but in this tutorial I choose basic. (Also ignore the warning that said provisioning VNG up to 45 minutes. Because creating VNG in AzureStack is really really really faster than AzurePublic haha).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>FYI, Public IP is will not appear yet, until you create the connection between VNG and Local Network Gateway (LNG)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create Local Network Gateway, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>IP address (Public IP that used by Mikrotik VPN) : xxx.xxx.xxx.188</p>
+</li>
+<li>
+<p>Address space (local address that used by local network behind Mikrotik) : 192.168.100.0/24</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/LNG.PNG" alt="LNG">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create connection, and here&#8217;s the example parameters:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Virtual Network Gateway : choose your VNG that created in the step 2</p>
+</li>
+<li>
+<p>Local Network Gateway : choose your LNG that created in the step 3</p>
+</li>
+<li>
+<p>Shared key (also known as Pre-Shared Key (PSK)) : 5z4ZNenz8Mkk</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/Connection.PNG" alt="Connection">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Just that, and let&#8217;s move on to Mikrotik Site</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Also you can check to public IP that used by VNG, it should be appear now. And usually azure stack will use xxx.xxx.xxx.<strong>2</strong> for all VNGs</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_mikrotik_site">How to - Mikrotik Site</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create IPSec policy, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Src. address (Local network that used by Mikrotik site) : 192.168.100.0/24</p>
+</li>
+<li>
+<p>Dst. address (Local network that used by Azure Stack site) : 10.0.0.0/24</p>
+</li>
+<li>
+<p>IPsec protocols : esp</p>
+</li>
+<li>
+<p>SA src. address (Public IP that used by Mikrotik VPN) : xxx.xxx.xxx.188</p>
+</li>
+<li>
+<p>SA dst. address (Public IP that used by VNG) : xxx.xxx.xxx.2</p>
+</li>
+<li>
+<p>Proposal : default</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-general.PNG" alt="ipsec-policy-general"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-action.PNG" alt="ipsec-policy-action"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create policy proposal, and here&#8217;s the parameters (should be same) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Auth. algorithm : SHA26</p>
+</li>
+<li>
+<p>Encr. algorithm : AES-256 GCM</p>
+</li>
+<li>
+<p>Lifetime : 07:30:00</p>
+</li>
+<li>
+<p>PFS Group : none</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/proposal.PNG" alt="proposal">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create peer, and here&#8217;s the parameters (should be same) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Address (Public IP that used by Azure Stack&#8217;s VNG) : xxx.xxx.xxx.2</p>
+</li>
+<li>
+<p>Profile : default</p>
+</li>
+<li>
+<p>Auth. method : pre shared key</p>
+</li>
+<li>
+<p>Exchange mode : IKE2</p>
+</li>
+<li>
+<p>Secret (shared key) : 5z4ZNenz8Mkk</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer.PNG" alt="peer">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create peer profile, and here&#8217;s the parameters (should be same) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hash algorithm : SHA256</p>
+</li>
+<li>
+<p>Encryption algorithm : AES-256</p>
+</li>
+<li>
+<p>DH group : modp1024</p>
+</li>
+<li>
+<p>Proposal check : obey</p>
+</li>
+<li>
+<p>Lifetime : 08:00:00</p>
+</li>
+<li>
+<p>Lifebytes : 33553408</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-profile-2.PNG" alt="peer-profile-2">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After that the VPN IPSec status it&#8217;s should be also <em>established</em>, and if we check from the Mikrotik&#8217;s logs, there is <em>peer authorized</em> log appear, like these screenshots below.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/established.PNG" alt="established"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-authorized.PNG" alt="peer-authorized"></span>
+    * Also, the connection status on azure stack site it should be change to <em>connected</em></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>And the final step is create NAT rule, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Chain : srcnat</p>
+</li>
+<li>
+<p>Src. address (Local network that used by Mikrotik site) : 192.168.100.0/24</p>
+</li>
+<li>
+<p>Dst. address (Local network that used by Azure Stack site) : 10.0.0.0/24</p>
+</li>
+<li>
+<p>Action : accept</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule1.PNG" alt="NatRule1"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule2-1.PNG" alt="NatRule2-1"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update">UPDATE!!</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>If you have problem with can&#8217;t access SSH or etc via this IPSec S2S, maybe the problem came from the MTU issue, that the value is not same with Azure Stack VNG and the VMs behind it. And the solution is you can change the MTU on the VM(s) to 1350.</p>
+</li>
+<li>
+<p>Or if you have many VM(s), you can setup mangle rule from Mikrotik. And here&#8217;s script
+<code>ip firewall mangle add action=change-mss chain=forward new-mss=1350 out-interface=ether1 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1351-65535</code>
+<code>ip firewall mangle add action=change-mss chain=forward in-interface=ether1 new-mss=1350 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1351-65535</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references_that_might_should_be_usefull">References that might/should be usefull</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-vpn-gateway-settings" class="bare">https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-vpn-gateway-settings</a></p>
+</li>
+<li>
+<p><a href="https://blogs.technet.microsoft.com/netgeeks/2017/07/11/creating-a-site-to-site-vpn-ipsec-ikev2-with-azure-and-mikrotik-routeros/" class="bare">https://blogs.technet.microsoft.com/netgeeks/2017/07/11/creating-a-site-to-site-vpn-ipsec-ikev2-with-azure-and-mikrotik-routeros/</a></p>
+</li>
+<li>
+<p><a href="https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices" class="bare">https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices</a></p>
+</li>
+<li>
+<p><a href="http://www.themightybinary.com/blog/mikrotik-mtu-and-tcp-mss/" class="bare">http://www.themightybinary.com/blog/mikrotik-mtu-and-tcp-mss/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>]]></description><link>https://fauzanooor.github.io/2019/04/07/IPSEC-S2S-From-Azure-Stack-to-Mikrotik.html</link><guid isPermaLink="true">https://fauzanooor.github.io/2019/04/07/IPSEC-S2S-From-Azure-Stack-to-Mikrotik.html</guid><category><![CDATA[VPN]]></category><category><![CDATA[ Azure Stack]]></category><category><![CDATA[ Mikrotik]]></category><dc:creator><![CDATA[fauzan]]></dc:creator><pubDate>Sun, 07 Apr 2019 00:00:00 GMT</pubDate></item><item><title><![CDATA[Catatan Istilah-Istilah pada Sistem Komputer]]></title><description><![CDATA[<div class="sect2">
 <h3 id="_a">A</h3>
 
 </div>
