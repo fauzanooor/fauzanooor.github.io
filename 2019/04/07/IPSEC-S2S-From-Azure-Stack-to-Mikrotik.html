@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>IPSEC S2S - From Azure Stack to Mikrotik</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="IPSEC S2S - From Azure Stack to Mikrotik">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="IPSEC S2S - From Azure Stack to Mikrotik">
+    <meta property="og:description" content="">
+
+    <!-- <meta name="twitter:site" content="">
+
+<meta name="twitter:creator" content="">
+
+<meta name="google-site-verification" content="">
+
+<meta property="fb:admins" content="">
+ -->
+
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/main.min.css?v=1554612722220"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/custom.css?v=1554612722220"/>
+    <link rel="stylesheet" href="//fauzanooor.github.io/themes/ghostium/assets/css/asciidoctor-foundation.css?v=1554612722220"/>
+
+
+
+
+    <script type="text/javascript">
+      var ga_ua = 'UA-XXXXX-X';
+      
+      var disqus_shortname = 'example';
+      
+      var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/head-scripts.min.js?v=1554612722220"></script>
+
+    <link rel="canonical" href="https://fauzanooor.github.io/2019/04/07/IPSEC-S2S-From-Azure-Stack-to-Mikrotik.html" />
+    <meta name="referrer" content="origin" />
+    
+    <meta property="og:site_name" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="IPSEC S2S - From Azure Stack to Mikrotik" />
+    <meta property="og:description" content="Requirements (As far I know ya hehe) Any mikrotik device or appliance with ROS v6.43.2 or later Azure Stack version 1808 or later How to - Azure Stack Site Create Subnet Gateway in the Virtual Network, and here&amp;#8217;s the example parameters : Address space : 10.0.0." />
+    <meta property="og:url" content="https://fauzanooor.github.io/2019/04/07/IPSEC-S2S-From-Azure-Stack-to-Mikrotik.html" />
+    <meta property="article:tag" content="VPN" />
+    <meta property="article:tag" content=" Azure Stack" />
+    <meta property="article:tag" content=" Mikrotik" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="IPSEC S2S - From Azure Stack to Mikrotik" />
+    <meta name="twitter:description" content="Requirements (As far I know ya hehe) Any mikrotik device or appliance with ROS v6.43.2 or later Azure Stack version 1808 or later How to - Azure Stack Site Create Subnet Gateway in the Virtual Network, and here&amp;#8217;s the example parameters : Address space : 10.0.0." />
+    <meta name="twitter:url" content="https://fauzanooor.github.io/2019/04/07/IPSEC-S2S-From-Azure-Stack-to-Mikrotik.html" />
+    
+    <script type="application/ld+json">
+null
+    </script>
+
+    <meta name="generator" content="HubPress" />
+    <link rel="alternate" type="application/rss+xml" title="" href="https://fauzanooor.github.io/rss/" />
+  </head>
+  <body class="post-template tag-VPN tag-Azure-Stack tag-Mikrotik">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+    <nav tabindex="-1" class="drawer">
+      <div class="drawer-container">
+        <!--.drawer-search(role="search")-->
+        <ul role="navigation" class="drawer-list">
+          
+          <li class="drawer-list-item">
+            <a href="https://fauzanooor.github.io" data-pjax>
+              <i class="fa fa-home"></i>Home
+            </a>
+          </li>
+          <!-- <li class="drawer-list-item">
+            <a href="https://fauzanooor.github.io" title="" data-pjax>
+              <i class="fa fa-list-alt"></i>All posts
+            </a>
+          </li> -->
+          <li class="drawer-list-item">
+            <a href="https://fauzanooor.github.io/rss/">
+              <i class="fa fa-rss"></i>Subscribe to Feed
+            </a>
+          </li>
+          <li class="drawer-list-divider"></li>
+          <li class="drawer-list-item drawer-list-title">
+            Follow me
+          </li>
+          
+          
+          <li class="drawer-list-item">
+            <a href="https://twitter.com/fauzanooor" title="Twitter" target="_blank">
+              <i class="fa fa-twitter"></i>Twitter
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://github.com/fauzanooor" title="Github" target="_blank">
+              <i class="fa fa-github"></i>Github
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://facebook.com/fauzanooor" title="Facebook" target="_blank">
+              <i class="fa fa-facebook"></i>Facebook
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://instagram.com/fauzanooor" title="Instagram" target="_blank">
+              <i class="fa fa-instagram"></i>Instagram
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="https://linkedin.com/in/fauzanooor" title="LinkedIn" target="_blank">
+              <i class="fa fa-linkedin"></i>LinkedIn
+            </a>
+          </li>
+          <li class="drawer-list-item">
+            <a href="mailto:iam@fauzanooor.id" title="Email" target="_blank">
+              <i class="fa fa-envelope-o"></i>Email
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-VPN tag-Azure-Stack tag-Mikrotik">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2019-04-07" itemprop="datePublished">
+                  12 hours ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                  <span class="tags"><i class="fa fa-tags"></i>
+                      <span>
+                      <a href="https://fauzanooor.github.io/tag/VPN/">VPN</a>, <a href="https://fauzanooor.github.io/tag/Azure-Stack/"> Azure Stack</a>, <a href="https://fauzanooor.github.io/tag/Mikrotik/"> Mikrotik</a></span>
+                  </span>
+                </li>
+              <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="https://fauzanooor.github.io/2019/04/07/IPSEC-S2S-From-Azure-Stack-to-Mikrotik.html" itemprop="url" data-pjax title="IPSEC S2S - From Azure Stack to Mikrotik">IPSEC S2S - From Azure Stack to Mikrotik</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="fauzanooor.github.io" class="post-author-avatar">
+                  <img src="https://avatars2.githubusercontent.com/u/11287440?v&#x3D;4" alt="fauzan">
+                </a>
+              <div class="post-author-info">
+                <a href="fauzanooor.github.io" class="post-author-name">
+                  fauzan
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <div class="sect1">
+<h2 id="_requirements_as_far_i_know_ya_hehe">Requirements (As far I know ya hehe)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Any mikrotik device or appliance with ROS v6.43.2 or later</p>
+</li>
+<li>
+<p>Azure Stack version 1808 or later</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_azure_stack_site">How to - Azure Stack Site</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create Subnet Gateway in the Virtual Network, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Address space : 10.0.0.0/23</p>
+</li>
+<li>
+<p>Default subnet (that used by VM(s) : 10.0.0.0/24</p>
+</li>
+<li>
+<p>Gateway subnet : 10.0.1.0/27</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/GatewaySubnet.PNG" alt="GatewaySubnet">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create Virtual Network Gateway (VNG), and for the type I think it&#8217;s no problem at all if you choose basic or higher, but in this tutorial I choose basic. (Also ignore the warning that said provisioning VNG up to 45 minutes. Because creating VNG in AzureStack is really really really faster than AzurePublic haha).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>FYI, Public IP is will not appear yet, until you create the connection between VNG and Local Network Gateway (LNG)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create Local Network Gateway, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>IP address (Public IP that used by Mikrotik VPN) : xxx.xxx.xxx.188</p>
+</li>
+<li>
+<p>Address space (local address that used by local network behind Mikrotik) : 192.168.100.0/24</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/LNG.PNG" alt="LNG">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create connection, and here&#8217;s the example parameters:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Virtual Network Gateway : choose your VNG that created in the step 2</p>
+</li>
+<li>
+<p>Local Network Gateway : choose your LNG that created in the step 3</p>
+</li>
+<li>
+<p>Shared key (also known as Pre-Shared Key (PSK)) : 5z4ZNenz8Mkk</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/Connection.PNG" alt="Connection">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Just that, and let&#8217;s move on to Mikrotik Site</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Also you can check to public IP that used by VNG, it should be appear now. And usually azure stack will use xxx.xxx.xxx.<strong>2</strong> for all VNGs</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_mikrotik_site">How to - Mikrotik Site</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create IPSec policy, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Src. address (Local network that used by Mikrotik site) : 192.168.100.0/24</p>
+</li>
+<li>
+<p>Dst. address (Local network that used by Azure Stack site) : 10.0.0.0/24</p>
+</li>
+<li>
+<p>IPsec protocols : esp</p>
+</li>
+<li>
+<p>SA src. address (Public IP that used by Mikrotik VPN) : xxx.xxx.xxx.188</p>
+</li>
+<li>
+<p>SA dst. address (Public IP that used by VNG) : xxx.xxx.xxx.2</p>
+</li>
+<li>
+<p>Proposal : default</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-general.PNG" alt="ipsec-policy-general"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-action.PNG" alt="ipsec-policy-action"></span></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create policy proposal, and here&#8217;s the parameters (should be same) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Auth. algorithm : SHA26</p>
+</li>
+<li>
+<p>Encr. algorithm : AES-256 GCM</p>
+</li>
+<li>
+<p>Lifetime : 07:30:00</p>
+</li>
+<li>
+<p>PFS Group : none</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/proposal.PNG" alt="proposal">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create peer, and here&#8217;s the parameters (should be same) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Address (Public IP that used by Azure Stack&#8217;s VNG) : xxx.xxx.xxx.2</p>
+</li>
+<li>
+<p>Profile : default</p>
+</li>
+<li>
+<p>Auth. method : pre shared key</p>
+</li>
+<li>
+<p>Exchange mode : IKE2</p>
+</li>
+<li>
+<p>Secret (shared key) : 5z4ZNenz8Mkk</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer.PNG" alt="peer">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create peer profile, and here&#8217;s the parameters (should be same) :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Hash algorithm : SHA256</p>
+</li>
+<li>
+<p>Encryption algorithm : AES-256</p>
+</li>
+<li>
+<p>DH group : modp1024</p>
+</li>
+<li>
+<p>Proposal check : obey</p>
+</li>
+<li>
+<p>Lifetime : 08:00:00</p>
+</li>
+<li>
+<p>Lifebytes : 33553408</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-profile-2.PNG" alt="peer-profile-2">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After that the VPN IPSec status it&#8217;s should be also <em>established</em>, and if we check from the Mikrotik&#8217;s logs, there is <em>peer authorized</em> log appear, like these screenshots below.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/established.PNG" alt="established"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-authorized.PNG" alt="peer-authorized"></span>
+    * Also, the connection status on azure stack site it should be change to <em>connected</em></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>And the final step is create NAT rule, and here&#8217;s the example parameters :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Chain : srcnat</p>
+</li>
+<li>
+<p>Src. address (Local network that used by Mikrotik site) : 192.168.100.0/24</p>
+</li>
+<li>
+<p>Dst. address (Local network that used by Azure Stack site) : 10.0.0.0/24</p>
+</li>
+<li>
+<p>Action : accept</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule1.PNG" alt="NatRule1"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule2-1.PNG" alt="NatRule2-1"></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_update">UPDATE!!</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>If you have problem with can&#8217;t access SSH or etc via this IPSec S2S, maybe the problem came from the MTU issue, that the value is not same with Azure Stack VNG and the VMs behind it. And the solution is you can change the MTU on the VM(s) to 1350.</p>
+</li>
+<li>
+<p>Or if you have many VM(s), you can setup mangle rule from Mikrotik. And here&#8217;s script
+<code>ip firewall mangle add action=change-mss chain=forward new-mss=1350 out-interface=ether1 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1351-65535</code>
+<code>ip firewall mangle add action=change-mss chain=forward in-interface=ether1 new-mss=1350 passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1351-65535</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references_that_might_should_be_usefull">References that might/should be usefull</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-vpn-gateway-settings" class="bare">https://docs.microsoft.com/en-us/azure/azure-stack/azure-stack-vpn-gateway-settings</a></p>
+</li>
+<li>
+<p><a href="https://blogs.technet.microsoft.com/netgeeks/2017/07/11/creating-a-site-to-site-vpn-ipsec-ikev2-with-azure-and-mikrotik-routeros/" class="bare">https://blogs.technet.microsoft.com/netgeeks/2017/07/11/creating-a-site-to-site-vpn-ipsec-ikev2-with-azure-and-mikrotik-routeros/</a></p>
+</li>
+<li>
+<p><a href="https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices" class="bare">https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-devices</a></p>
+</li>
+<li>
+<p><a href="http://www.themightybinary.com/blog/mikrotik-mtu-and-tcp-mss/" class="bare">http://www.themightybinary.com/blog/mikrotik-mtu-and-tcp-mss/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="fauzanooor.github.io" class="post-author-avatar">
+                  <img itemprop="image" src="https://avatars2.githubusercontent.com/u/11287440?v&#x3D;4" alt="fauzan">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="fauzanooor.github.io" itemprop="url" class="post-author-name">
+                  <span itemprop="name">fauzan</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                  <p class="post-author-location">Indonesia</p>
+                  <p class="post-author-website">
+                    <a href="fauzanooor.github.io" rel="nofollow">fauzanooor.github.io</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">April 07, 2019</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+      <p><small>Copyright &copy; <span itemprop="copyrightHolder"></span>. 2019. All Rights Reserved.</small></p>
+      <p><small><a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="http://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+      <p><small>Adapted by <a href="https://twitter.com/mgreau">Maxime Gréau</a></small></p>
+      <p><small>Published with <a href="http://hubpress.io">HubPress</a></small></p>
+    </footer>
+  </div>
+</section>
+
+
+<section class="post-comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+  var disqus_shortname = 'fauzanooor-github-io'; // required: replace example with your forum shortname
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js?v="></script> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js?v="></script> 
+      <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          // change date with ago
+          jQuery('ago.ago').each(function(){
+            var element = jQuery(this).parent();
+            element.html( moment(element.text()).fromNow());
+          });
+        });
+
+        hljs.initHighlightingOnLoad();
+      </script>
+
+    <script src="//fauzanooor.github.io/themes/ghostium/assets/js/foot-scripts.min.js?v=1554612722220"></script>
+
+
+  </body>
+</html>
