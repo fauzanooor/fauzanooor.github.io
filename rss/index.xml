@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Apr 2019 04:52:02 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[IPSEC S2S - From Azure Stack to Mikrotik]]></title><description><![CDATA[<div class="sect1">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Apr 2019 04:55:35 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[IPSEC S2S - From Azure Stack to Mikrotik]]></title><description><![CDATA[<div class="sect1">
 <h2 id="_requirements_as_far_i_know_ya_hehe">Requirements (As far I know ya hehe)</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -38,7 +38,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/GatewaySubnet.PNG" alt="GatewaySubnet">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/GatewaySubnet.PNG" alt="GatewaySubnet">
 </div>
 </div>
 <div class="olist arabic">
@@ -70,7 +70,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/LNG.PNG" alt="LNG">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/LNG.PNG" alt="LNG">
 </div>
 </div>
 <div class="olist arabic">
@@ -95,7 +95,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/Connection.PNG" alt="Connection">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/Connection.PNG" alt="Connection">
 </div>
 </div>
 <div class="olist arabic">
@@ -147,8 +147,8 @@
 </ol>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-general.PNG" alt="ipsec-policy-general"></span>
-<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/ipsec-policy-action.PNG" alt="ipsec-policy-action"></span></p>
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/ipsec-policy-general.PNG" alt="ipsec-policy-general"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/ipsec-policy-action.PNG" alt="ipsec-policy-action"></span></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -175,7 +175,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/proposal.PNG" alt="proposal">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/proposal.PNG" alt="proposal">
 </div>
 </div>
 <div class="olist arabic">
@@ -206,7 +206,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer.PNG" alt="peer">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/peer.PNG" alt="peer">
 </div>
 </div>
 <div class="olist arabic">
@@ -240,7 +240,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-profile-2.PNG" alt="peer-profile-2">
+<img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/peer-profile-2.PNG" alt="peer-profile-2">
 </div>
 </div>
 <div class="olist arabic">
@@ -251,8 +251,8 @@
 </ol>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/established.PNG" alt="established"></span>
-<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/peer-authorized.PNG" alt="peer-authorized"></span>
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/established.PNG" alt="established"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/peer-authorized.PNG" alt="peer-authorized"></span>
     * Also, the connection status on azure stack site it should be change to <em>connected</em></p>
 </div>
 <div class="olist arabic">
@@ -279,8 +279,8 @@
 </ol>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule1.PNG" alt="NatRule1"></span>
-<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/blob/master/images/NatRule2-1.PNG" alt="NatRule2-1"></span></p>
+<p><span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/NatRule1.PNG" alt="NatRule1"></span>
+<span class="image"><img src="https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/NatRule2-1.PNG" alt="NatRule2-1"></span></p>
 </div>
 </div>
 </div>
