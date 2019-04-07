@@ -1,10 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Apr 2019 04:55:35 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[IPSEC S2S - From Azure Stack to Mikrotik]]></title><description><![CDATA[<div class="sect1">
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Untitled RSS Feed]]></title><description><![CDATA[Untitled RSS Feed]]></description><link>https://fauzanooor.github.io</link><image><url>https://github.com/fauzanooor/fauzanooor.github.io/raw/master/images/patrick.png</url><title>Untitled RSS Feed</title><link>https://fauzanooor.github.io</link></image><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Apr 2019 05:02:49 GMT</lastBuildDate><atom:link href="https://fauzanooor.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[IPSEC S2S - From Azure Stack to Mikrotik]]></title><description><![CDATA[<div class="sect1">
 <h2 id="_requirements_as_far_i_know_ya_hehe">Requirements (As far I know ya hehe)</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p>Any mikrotik device or appliance with ROS v6.43.2 or later</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are using v6.42.x, I really recommended to upgrade, because in my experience, this version have a lot of problems with IPSec tunnel.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Azure Stack version 1808 or later</p>
@@ -290,7 +297,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>If you have problem with can&#8217;t access SSH or etc via this IPSec S2S, maybe the problem came from the MTU issue, that the value is not same with Azure Stack VNG and the VMs behind it. And the solution is you can change the MTU on the VM(s) to 1350.</p>
+<p>If you have an issue with you cannot access SSH or etc via this IPSec S2S, maybe issue came from the MTU, which is booth MTU value from Azure Stack VNG and VMs behind it are not same. And the solution is you can change the MTU on the VM(s) to 1350.</p>
 </li>
 <li>
 <p>Or if you have many VM(s), you can setup mangle rule from Mikrotik. And here&#8217;s script
