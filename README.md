@@ -1,1 +1,1 @@
-heey hooo
+Move to [https://buburtimor.xyz](https://buburtimor.xyz/)
