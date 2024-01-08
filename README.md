@@ -1,1 +1,1 @@
-Move to [https://buburtimor.xyz](https://buburtimor.xyz/)
+you can access from https://fauzanooor.github.io
